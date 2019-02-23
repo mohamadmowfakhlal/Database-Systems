@@ -24,6 +24,8 @@ use University;
 
 #Find the names of those students who have the same name as some instructor. Use the SOME  operator for this
 #select * from Student where StudName = some (select InstName from Instructor)
+#Make another statement querying the same, but without using SOME
+##select * from Student where StudName in (select InstName from Instructor)
 
 #Delete all courses that have never been offered
 #(that is, do not occur in the Section table
@@ -41,3 +43,26 @@ use University;
 #What is the course title and sum of course credits
 #of the courses taught by instructor Brandt?
 #select Title,sum(Credits) from Instructor I Natural join  Teaches Natural join Course  where I.instName='Brandt' group by Title
+
+#select distinct(grade) from Takes
+#create table GradePoints2(Grade VARCHAR(2),Points FLOAT(2,2) ,PRIMARY KEY(Grade))
+#create table GradePoints(Grade VARCHAR(2),Points DECIMAL(1,1) ,PRIMARY KEY(Grade))
+#insert into GradePoints2(Grade) select distinct(grade) from Takes#
+#update GradePoint set Grade='A' where Grade='1.'; 
+#delete from GradePoint where Grade='1.'
+#select *  from GradePoint;
+#insert into GradePoint values('A',4.0);
+#insert into GradePoint values('A-',3.7);
+#insert into GradePoint values('B+',3.5);
+#insert into GradePoint values('B',3.0);
+#insert into GradePoint values('B-',2.7);
+#insert into GradePoint values('C+',2.5);
+#insert into GradePoint values('C',2.0);
+#insert into GradePoint values('C-',1.5);
+#insert into GradePoint values('F',1.0);
+#drop table GradePoints
+#select Points from GradePoint where grade in ( select Grade from Course natural join Takes natural join Section); 
+#alter table Takes add foreign key( Grade) REFERENCES GradePoint(Grade);
+select StudName,Title,avg(Credits * Points) from Takes natural join GradePoint natural join Section natural join Course natural join Student Group by StudID order by avg(Credits * Points) desc;
+
+#select count(*) from Student;
