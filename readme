@@ -1,0 +1,3 @@
+The basic change that I have made that  I remove the shop_capacity cloumn from barber_shop and adding a new field building_address 
+to the address table and create a new procedure for adding a barber-shop in our system where it is necessary to provide one 
+telephone number and optional telephone number      
